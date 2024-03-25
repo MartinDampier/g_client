@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'styles/colors.dart';
+import 'styles/styles.dart';
+import 'widgets/blinkingWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purpleAccent),
+        colorScheme: appColors.mainScheme,
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'G Client'),
@@ -44,25 +47,45 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Drawer(
         child: Column(
           children: [
-            TextButton(
-              onPressed: _incrementCounter,
-              child: const Text(
-              "Home"
+            Container(
+              width: double.infinity,
+              height: 60.0,
+              alignment: Alignment.center,
+              child: Text(
+                "Modes"
               )
             ),
-            TextButton(
+            Container(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: _incrementCounter,
+                child: const Text(
+                    "Home"
+                ),
+                style: appStyles.textButtonStyle,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: TextButton(
+                  onPressed: _incrementCounter,
+                  child: const Text(
+                      "Football"
+                  ),
+                style: appStyles.textButtonStyle
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: TextButton(
+                  onPressed: _incrementCounter,
+                  child: const Text(
+                      "Baseball"
+                  ),
+                  style: appStyles.textButtonStyle
+              ),
+            ),
 
-                onPressed: _incrementCounter,
-                child: const Text(
-                    "Football"
-                )
-            ),
-            TextButton(
-                onPressed: _incrementCounter,
-                child: const Text(
-                    "Baseball"
-                )
-            ),
           ],
         ),
       ),
@@ -72,14 +95,76 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Column(
+              children: [
+                 Container(
+                   width: double.infinity,
+                   padding: EdgeInsets.only(left: 10.0),
+                   child: Row(
+                     children: [
+                       Text(
+                           "Live"
+                       ),
+                       BlinkingWidget(
+                         child: Container(
+                           height: 10,
+                           width: 10,
+                           padding: EdgeInsets.only(left: 20.0),
+                           decoration: const BoxDecoration(
+                             shape: BoxShape.circle,
+                             color: Colors.red,
+                           ),
+                         ),
+                       ),
+                     ],
+                   )
+                 ),
+                Container(
+                  height: 100,
+                  padding: EdgeInsets.all(5),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    boxShadow: ,
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    border: Border.all(color: Colors.black),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                        children: [
+                          Container(
+                            child: Text("Eagles Vs Jets")
+                          ),
+                          Container(
+                            alignment: Alignment.topRight,
+                            child: Text("Football")
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                            
+                        ],
+                      ),
+                    ],
+                  )
+                )
+              ]
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Text("Upcoming"),
+                ),
+                Container(
+                ),
+                Container(),
+                Container(),
+              ]
             ),
           ],
         ),
